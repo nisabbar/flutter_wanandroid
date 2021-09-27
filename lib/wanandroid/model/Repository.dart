@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 //获取主页文章列表数据
 Future<ArticleResponseBean> getHomeArticleData(int offset) async {
   //异步方法执行的指定格式，最后返回值为Future匿名方法中的参数值
-  var response = await http.get(Api.getArticles(offset));
+  var response = await http.get(Uri.parse(Api.getArticles(offset)));
   if (response?.statusCode == 200) {
     var articleBean = ArticleResponseBean.fromJson(json.decode(response.body));
     if (articleBean.errorCode == 0) {
@@ -29,7 +29,7 @@ Future<ArticleResponseBean> getHomeArticleData(int offset) async {
 
 //获取主页轮播图
 Future<BannerResponseBean> getHomeBannerData() async {
-  http.Response response = await http.get(Api.HOME_BANNER_URL);
+  http.Response response = await http.get(Uri.parse(Api.HOME_BANNER_URL));
   if (response?.statusCode == 200) {
     var bannerResponseBean =
         BannerResponseBean.fromJson(json.decode(response.body));
@@ -45,7 +45,7 @@ Future<BannerResponseBean> getHomeBannerData() async {
 
 //获取项目类型
 Future<ProjectTabResonseBean> getProjectTabData() async {
-  http.Response response = await http.get(Api.PROJECT_TAB_URL);
+  http.Response response = await http.get(Uri.parse(Api.PROJECT_TAB_URL));
   if (response?.statusCode == 200) {
     var bean = ProjectTabResonseBean.fromJson(json.decode(response.body));
     if (bean.errorCode == 0) {
@@ -60,7 +60,7 @@ Future<ProjectTabResonseBean> getProjectTabData() async {
 
 //获取项目列表数据
 Future<ProjectResponseBean> getProjectData(int offset, String cid) async {
-  var response = await http.get(Api.getProjects(offset, cid));
+  var response = await http.get(Uri.parse(Api.getProjects(offset, cid)));
   if (response?.statusCode == 200) {
     var projectResponseBean =
         ProjectResponseBean.fromJson(json.decode(response.body));
@@ -76,7 +76,7 @@ Future<ProjectResponseBean> getProjectData(int offset, String cid) async {
 
 //获取系统页面列表数据
 Future<SystemResponseBean> getSystemData() async {
-  var response = await http.get(Api.TREE_URL);
+  var response = await http.get(Uri.parse(Api.TREE_URL));
   if (response?.statusCode == 200) {
     var systemRepsonseBean =
         SystemResponseBean.fromJson(json.decode(response.body));
@@ -93,7 +93,7 @@ Future<SystemResponseBean> getSystemData() async {
 //获取体系文章列表数据
 Future<ArticleResponseBean> getSystemArticleData(int offset, String cid) async {
   //异步方法执行的指定格式，最后返回值为Future匿名方法中的参数值
-  var response = await http.get(Api.getSystemArticleList(offset, cid));
+  var response = await http.get(Uri.parse(Api.getSystemArticleList(offset, cid)));
   if (response?.statusCode == 200) {
     var articleBean = ArticleResponseBean.fromJson(json.decode(response.body));
     if (articleBean.errorCode == 0) {
@@ -108,7 +108,7 @@ Future<ArticleResponseBean> getSystemArticleData(int offset, String cid) async {
 
 //获取体系文章列表数据
 Future<NavigationResponseBean> getNavigationPageData() async {
-  var response = await http.get(Api.NAVI_URL);
+  var response = await http.get(Uri.parse(Api.NAVI_URL));
   if (response?.statusCode == 200) {
     var bean = NavigationResponseBean.fromJson(json.decode(response.body));
     if (bean?.errorCode == 0) {
@@ -124,7 +124,7 @@ Future<NavigationResponseBean> getNavigationPageData() async {
 //登陆
 Future<LoginResponseBean> login(String userName, String password) async {
   var response = await http
-      .post(Api.LOGIN_URL, body: {'username': userName, 'password': password});
+      .post(Uri.parse(Api.LOGIN_URL), body: {'username': userName, 'password': password});
   if (response?.statusCode == 200) {
     var loginResponseBean =
         LoginResponseBean.fromJson(json.decode(response.body));
