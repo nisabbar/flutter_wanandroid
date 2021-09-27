@@ -25,3 +25,5 @@ class WebViewPageState extends State<WebViewPage> {
         initialContent: widget.url,
       ),
     );
+  }
+}
