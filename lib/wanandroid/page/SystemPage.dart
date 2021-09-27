@@ -18,12 +18,6 @@ class SystemPageState extends State<SystemPage> {
       RefreshController(initialRefresh: true);
 
   @override
-  void setState(fn) {
-    super.setState(fn);
-    _getSystemListData();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SmartRefresher(
       onRefresh: () {
